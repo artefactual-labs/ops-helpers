@@ -1,8 +1,13 @@
-# es-helpers
+# ops-helpers
+
+Misc stuff for operations
+
+
+## es-helpers
 
 Scripts to help elasticsearch sysadmin work
 
-## Create a elasticsearch repository:
+### Create a elasticsearch repository:
 
 ```
 $ python es-repo.py createrepo --reponame repo1 --repopath /var/lib/elasticsearch/backup-repo-1
@@ -12,7 +17,7 @@ $ python es-repo.py createrepo --reponame repo2 --repopath /var/lib/elasticsearc
 ```
 
 
-## List repositories:
+### List repositories:
 
 ```
 $ python es-repo.py getrepos
@@ -23,7 +28,7 @@ $ python es-repo.py getrepos
 ```
 
 
-## Create snapshot
+### Create snapshot
 
 ```
 $ python es-repo.py createsnap --reponame repo1 --snapname
@@ -41,7 +46,7 @@ $ python es-repo.py createsnap --reponame repo1 --snapname
 ```
 
 
-## Get snapshot information
+### Get snapshot information
 
 ```
 $ python es-repo.py getsnap --reponame repo1 --snapname snapshot2
@@ -81,7 +86,7 @@ $ python es-repo.py getsnap --reponame repo1
                  u'state': u'SUCCESS'}]}
 ```
 
-## Restore snapshot
+### Restore snapshot
 
 ```
 $ python es-repo.py restore --reponame repo1 --snapname snapshot2 --index aips --target aipsrestoretest2
