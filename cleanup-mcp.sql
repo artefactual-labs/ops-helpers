@@ -6,6 +6,7 @@ DELETE FROM Events;
 DELETE FROM FilesIdentifiedIDs;
 DELETE FROM FilesIDs;
 DELETE FROM FPCommandOutput;
+DELETE FROM main_fpcommandoutput;
 
 DELETE FROM Files;
 DELETE FROM SIPs;
