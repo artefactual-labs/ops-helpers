@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [ops-helpers](#ops-helpers)
+  - [es-helpers](#es-helpers)
+    - [Create a elasticsearch repository:](#create-a-elasticsearch-repository)
+    - [List repositories:](#list-repositories)
+    - [Create snapshot](#create-snapshot)
+    - [Get snapshot information](#get-snapshot-information)
+    - [Restore snapshot](#restore-snapshot)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # ops-helpers
 
 Misc stuff for operations
