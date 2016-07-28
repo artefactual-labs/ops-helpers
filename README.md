@@ -3,6 +3,7 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [ops-helpers](#ops-helpers)
+  - [am-backups](#am-backups)
   - [es-helpers](#es-helpers)
     - [Create a elasticsearch repository:](#create-a-elasticsearch-repository)
     - [List repositories:](#list-repositories)
@@ -15,6 +16,10 @@
 # ops-helpers
 
 Misc stuff for operations
+
+## am-backups
+
+Scripts to backup Archivematica databases, etc.
 
 
 ## es-helpers
