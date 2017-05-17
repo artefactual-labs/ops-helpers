@@ -8,8 +8,8 @@ This script connects to the Storage Service associated with
 the archivematica dashboard instance, downloads the AIP,
 and then uses the MCPclient script indexAIP.py for indexing.
 
-Run as user archivematica:
-$ sudo -u archivematica ./index-aip-from-aipstore.py <aip_uuid>
+Run as user archivematica, and use the python interpreter of the MCP client virtualenv:
+$ sudo -u archivematica /usr/share/python/archivematica-mcp-client/bin/python index-aip-from-aipstore.py <aip_uuid>
 """
 
 from __future__ import print_function
@@ -23,6 +23,7 @@ import subprocess
 import sys
 import tempfile
 import urllib
+
 
 user = getpass.getuser()
 if (user != 'archivematica'):
@@ -104,14 +105,16 @@ def index_from_aipstore(uuid):
     sip_path = os.path.join(dirlist[0],"data")  # METS etc inside the data/ directory of the AIP
     sip_type="REIN"     # setting as reingest so that existing index entries are removed beforehand 
 
-    command_string = "./indexAIP.py {} {} {} {}".format(sip_uuid, sip_name, sip_path, sip_type)
-    print ("will execute: {}".format(command_string))
+    # using the same python interpreter used for this script (sys.executable)
 
+    command_string = "{} indexAIP.py {} {} {} {}".format(sys.executable, sip_uuid, sip_name, sip_path, sip_type)
+    print ("will execute: {}".format(command_string))
 
     p = subprocess.Popen(shlex.split(command_string),
                          cwd="/usr/lib/archivematica/MCPClient/clientScripts",
                          env={"DJANGO_SETTINGS_MODULE": "settings.common", 
-                              "PYTHONPATH": "/usr/share/archivematica/dashboard:/usr/lib/archivematica/archivematicaCommon" },
+                              "PYTHONPATH": "/usr/share/archivematica/dashboard:/usr/lib/archivematica/archivematicaCommon",
+                               },
                          stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE,
                     )

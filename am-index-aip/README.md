@@ -15,7 +15,12 @@ This script connects to the Storage Service associated with
 the archivematica dashboard instance, downloads the AIP,
 and then uses the MCPclient script indexAIP.py for indexing.
 
-Run as user archivematica:
+
+Run as user archivematica, use the python interpreter of the MCP client virtualenv (if using a separate one):
+```bash
+$ sudo -u archivematica /usr/share/python/archivematica-mcp-client/bin/python index-aip-from-aipstore.py <aip_uuid>
+```
+If not using a separate virtualenv for MCP Client:
 ```
 $ sudo -u archivematica ./index-aip-from-aipstore.py <aip_uuid>
 ```
