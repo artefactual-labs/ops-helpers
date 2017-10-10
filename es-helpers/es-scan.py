@@ -4,6 +4,7 @@ from __future__ import print_function
 
 import argparse
 from elasticsearch import Elasticsearch, Urllib3HttpConnection, helpers
+import json
 import sys
 
 ES_TIMEOUT = 3600
@@ -69,7 +70,7 @@ def main():
     es = Elasticsearch(args.server, connection_class=Urllib3HttpConnection, timeout=ES_TIMEOUT)
     r = helpers.scan(es,
                      index=args.index,
-                     query=args.query)
+                     query=json.loads(args.query))
     args.func(es, r)
 
 
