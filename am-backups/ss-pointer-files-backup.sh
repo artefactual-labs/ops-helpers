@@ -6,6 +6,7 @@ echo "Creating backups in $BACKUP_PATH ..."
 mkdir -p $BACKUP_PATH
 
 # this assumes the pointer files are stored in the default location
-# /var/archivematica/storage_service
-# ( will exclude tmp and staging dirs )
-tar -zc -f $BACKUP_PATH/pointer_files.tgz --directory /var/archivematica/storage_service --exclude="tmp*" --exclude="var" --exclude="recover" .
+# (/var/archivematica/storage_service) (change the following variable if required)
+SS_PF_LOCATION="/var/archivematica/storage_service"
+
+find $SS_PF_LOCATION -type f -name "pointer.*.xml" -printf %P\\0 | tar -rvf $BACKUP_PATH/pointer_files.tar --directory $SS_PF_LOCATION -T -
