@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+**Table of Contents**
 
 - [es-helpers](#es-helpers)
   - [es-repo.py (snapshots and repositories)](#es-repopy-snapshots-and-repositories)
@@ -13,6 +13,7 @@
     - [scan_count](#scan_count)
     - [scan_show](#scan_show)
     - [scan_del](#scan_del)
+  - [es-reindex.sh (update search indices)](#es-reindexsh-update-search-indices)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -148,3 +149,47 @@ $ python es-scan.py scan_del -i transfers  -q '{"query": {"match": {"status": "b
 $ python es-scan.py scan_count -i transfers  -q '{"query": {"match": {"status": "backlog"}}}'
 0
 ```
+
+## es-reindex.sh (update search indices)
+
+Apply the search document mappings found in Archivematica releases to existing
+documents using the [Reindex API]. This is the fastest method to update
+Archivematica search indices when upgrading the software and should guarantee
+a working Archivematica installation, but it will not populate the contents of
+new fields introduced in the new release.
+
+Before using this script, please back up your search indices. The script
+assumes that the cluster is reachable via `127.0.0.1:9200` but the `es_url`
+variable can be adjusted as needed.
+
+Ensure that the Elasticsearch heap size is big enough to accomodate the size
+of the indices. The size can be adjusted in `/etc/default/elasticsearch`
+(Ubuntu) or `/etc/sysconfig/elasticsearch` (CentOS).
+
+    $ grep ES_JAVA_OPTS= /etc/default/elasticsearch
+    ES_JAVA_OPTS="-Xms2g -Xmx2g"
+
+To find the right value, it is possible to guess the total size by listing
+all search indices. E.g. assuming that the search cluster is available via
+`127.0.0.1:9200`, try running the following command:
+
+    $ curl -s -X GET 'http://localhost:9200/_cat/indices/%2A?v=&s=index:desc'
+    health status index         uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+    yellow open   transfers     lYqkYjwZRy2XG8CP_3S3PQ   5   1          0            0      1.2kb          1.2kb
+    yellow open   transferfiles K5gnDZyOQz2JdIeZ6adJsQ   5   1          0            0      1.2kb          1.2kb
+    yellow open   aips          yAyK_koXThaZcWsBYfzN7w   5   1         17            0    101.4mb        101.4mb
+    yellow open   aipfiles      TVrrX8jkRhWWxGfvK_M6zg   5   1      11987            0      2.9gb          2.9gb
+
+In the example above, we'd use:
+
+    ES_JAVA_OPTS="-Xms3g -Xmx3g"
+
+In our example, this script took 11 minutes to complete. If it failed, try
+checking out the logs (`/var/log/elasticsearch.log`). Most likely, the JVM
+heap size ran out of memory. You can start over by restoring your back up or
+putting back the old indices.
+
+More details can be found in the Archivematica [upgrading docs].
+
+[Reindex API]: https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html
+[upgrading docs]: https://www.archivematica.org/es/docs/latest/admin-manual/installation-setup/upgrading/upgrading/
