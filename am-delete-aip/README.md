@@ -14,3 +14,18 @@ Delete request created successfully.
 ```
 
 Note: Do not use if the AIP is listed in the Dashboard's Archival Storage (the AIP will still show there as stored)
+
+
+### ss-delete-dip.py
+
+Delete a DIP from the Storage Service database.
+Use the python interpreter of the storage service virtualenv.
+Run with user archivematica.
+
+```
+$ sudo -u archivematica /usr/share/python/archivematica-storage-service/bin/python ss-
+delete-dip.py 8ebf7952-d767-4e63-8082-372ab2addea0
+8ebf7952-d767-4e63-8082-372ab2addea0: /var/archivematica/sharedDirectory/www/DIPsStore/8ebf/7952/d767/4e63/8082/372a/b2ad/dea0/test1-662d4202
+-246e-4b38-bf67-8a6049b3e7d9
+deleted: 8ebf7952-d767-4e63-8082-372ab2addea0
+```
