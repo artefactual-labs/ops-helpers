@@ -7,7 +7,7 @@ Just download the script in the AM server and run as root user:
 ```
 cd /tmp
 wget https://raw.githubusercontent.com/artefactual-labs/ops-helpers/master/am-clean-out/am-clean-out.sh
-chmod +x am-clean-out
-./am-clean-out
+chmod +x am-clean-out.sh
+./am-clean-out.sh
 ```
 
