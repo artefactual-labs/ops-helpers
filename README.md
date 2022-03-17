@@ -14,4 +14,4 @@ Misc stuff for operations
 * [am-index-aip](am-index-aip/README.md): Add AIP to the dashboard index (Archival Storage tab) of an 
 archivematica instance
 * [es-helpers](es-helpers/README.md): Scripts to help with elasticsearch work
-
+* [am-clean-out](am-clean-out/README.md): Script to clean pipeline and SS data on standalone servers.
