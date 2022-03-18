@@ -42,8 +42,8 @@ while IFS=$'\t' read uuid path;do
 
   # Get space's locations
   while IFS=$'\t' read relative_path ;do
-     echo -e "Deleting the location: ${path%/}/${relative_path}\n"
-     rm -rf ${path%/}/${relative_path} > /dev/null 2>&1
+     echo -e "Deleting the location: ${path%/}/${relative_path%/}/*\n"
+     rm -rf ${path%/}/${relative_path%/}/* > /dev/null 2>&1
 
   done < <(${SQL_COMMAND} "select relative_path from locations_location where ( purpose='DS' or purpose='AS' or purpose='BL' or purpose='AR' or purpose='RP' or purpose='SS') and space_id=\"${uuid}\"")
 
