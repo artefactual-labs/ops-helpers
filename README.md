@@ -10,8 +10,9 @@
 
 Misc stuff for operations
 
-* [am-backups](am-backups/README.md): Scripts for archivematica backups
-* [am-index-aip](am-index-aip/README.md): Add AIP to the dashboard index (Archival Storage tab) of an 
-archivematica instance
-* [es-helpers](es-helpers/README.md): Scripts to help with elasticsearch work
+* [am-backups](am-backups/README.md): Scripts for archivematica backups.
 * [am-clean-out](am-clean-out/README.md): Script to clean pipeline and SS data on standalone servers.
+* [am-import-index-aips](am-import-index-aips/README.md): Script to import and index AIPs.
+* [am-index-aip](am-index-aip/README.md): Add AIP to the dashboard index (Archival Storage tab) of an
+archivematica instance.
+* [es-helpers](es-helpers/README.md): Scripts to help with elasticsearch work.
