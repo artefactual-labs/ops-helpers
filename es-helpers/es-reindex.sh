@@ -36,9 +36,10 @@ done
 # Create tmp indices with old mappings
 for index in $index_list; do
   echo -e "Creating ${index}_new with old mappings..."
+  curl -s ${es_url}/${index} | jq '.'"${index}"' | del(.settings.index.provided_name, .settings.index.creation_date, .settings.index.uuid, .settings.index.version)' > /tmp/mapping_file.json
   curl -s -XPUT ${es_url}/${index}_new \
     -H 'Content-Type: application/json' \
-    -d "$(curl -s ${es_url}/${index} | jq '.'"${index}"' | del(.settings.index.provided_name, .settings.index.creation_date, .settings.index.uuid, .settings.index.version)')"  > /dev/null
+    -d @/tmp/mapping_file.json > /dev/null
 done
 echo -e "\n"
 

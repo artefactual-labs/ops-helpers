@@ -184,7 +184,18 @@ In the example above, we'd use:
 
     ES_JAVA_OPTS="-Xms3g -Xmx3g"
 
-In our example, this script took 11 minutes to complete. If it failed, try
+To run the script, please just download `es-reindex.sh` in the Archivematica
+server and run the script with a user with sudo privileges. For instance:
+
+```
+wget https://raw.githubusercontent.com/artefactual-labs/ops-helpers/master/es-helpers/es-reindex.sh
+
+chmod +x es-reindex.sh
+
+./es-reindex.sh
+```
+
+In our example, this script took 11 minutes to complete. If it fails, try
 checking out the logs (`/var/log/elasticsearch.log`). Most likely, the JVM
 heap size ran out of memory. You can start over by restoring your back up or
 putting back the old indices.
