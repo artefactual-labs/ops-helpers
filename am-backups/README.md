@@ -8,4 +8,4 @@
 
 ## am-backups
 
-Scripts to backup Archivematica databases, etc.
+Scripts to backup Archivematica stuff
